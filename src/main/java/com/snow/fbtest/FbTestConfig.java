@@ -1,4 +1,4 @@
-package com.example.fbtest;
+package com.snow.fbtest;
 
 import com.google.inject.AbstractModule;
 

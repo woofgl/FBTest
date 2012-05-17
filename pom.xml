@@ -10,7 +10,7 @@
 
     <!-- test -->
     <build>
-        <finalName>myWebApp</finalName>
+        <finalName>FBTest</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

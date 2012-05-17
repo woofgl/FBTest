@@ -1,4 +1,4 @@
-package com.example.fbtest.web;
+package com.snow.fbtest.web;
 
 
 import com.britesnow.snow.web.RequestContext;

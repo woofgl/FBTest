@@ -1,4 +1,4 @@
-package com.example.fbtest;
+package com.snow.fbtest;
 
 
 import org.scribe.builder.ServiceBuilder;

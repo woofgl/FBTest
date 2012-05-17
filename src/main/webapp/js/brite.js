@@ -101,7 +101,7 @@ brite.version = "0.9-snapshot";
 
 	/**
 	 * This just instantiate a new component for a given name. This is useful for manipulating the component off
-	 * lifecycle for performance. For example, sometime building a component and displaying in the background (with
+	 * lifecycle for performance. For snow, sometime building a component and displaying in the background (with
 	 * z-index) allow the browser to do its caching magic, and can speed up the first appearance of the component when
 	 * it is due.
 	 * 
@@ -646,9 +646,9 @@ brite.version = "0.9-snapshot";
 	 * 
 	 * If no componentName is given, then it will return the first component found.
 	 * 
-	 * For example:
+	 * For snow:
 	 * 
-	 * @example var myComponent = $(thisDiv).bComponent("myComponent");
+	 * @snow var myComponent = $(thisDiv).bComponent("myComponent");
 	 * 
 	 * @param {String}
 	 *            componentName The component name to be match when traversing the tree, if undefined, then, the
@@ -939,7 +939,7 @@ brite.util = {};
 	 * Code from: Math.uuid 2010 Robert Kieffer http://www.broofa.com
 	 * 
 	 * 
-	 * @example brite.uuid(); // returns "92329D39-6F5C-4520-ABFC-AAB64544E172" brite.uuid(15); // 15
+	 * @snow brite.uuid(); // returns "92329D39-6F5C-4520-ABFC-AAB64544E172" brite.uuid(15); // 15
 	 *          character ID (default base=62), returns "VcydxgltxrVZSTV" brite.uuid(8, 2); // returns "01001010"
 	 * 
 	 * @param {Number}
@@ -967,7 +967,7 @@ brite.util = {};
 	 * @param {String}
 	 *            pathToValue this is the "." delimited path to the value
 	 * 
-	 * @example brite.value({contact:{firstName:"Mike"}},"contact.firstName"); // return Mike
+	 * @snow brite.value({contact:{firstName:"Mike"}},"contact.firstName"); // return Mike
 	 * 
 	 */
 	brite.value = function(rootObj, pathToValue) {
@@ -1077,7 +1077,7 @@ brite.util = {};
 		 * From an array of javascript obect, create a map (js object) where the key is the propName value, and the
 		 * value is the array item. If the propName does not on an item exist, it will ingore the item.
 		 * 
-		 * @example var myVehicules = [{id:"truck",speed:80},{id:"racecar",speed:200}]; var vehiculeById =
+		 * @snow var myVehicules = [{id:"truck",speed:80},{id:"racecar",speed:200}]; var vehiculeById =
 		 *          brite.array.toMap(myVehicules,"id"); // vehiculeById["truck"].speed == 80
 		 * @param {Object}
 		 *            a The array
@@ -1196,7 +1196,7 @@ brite.ua = {};
 	/**
 	 * return a css friendly string with all the "has-**" that this ua supports
 	 * 
-	 * @example 
+	 * @snow
 	 *   brite.ua.cssHas(); // "has-canvas has-transition" for modern PC browsers
 	 *                      // "has-canvas has-transition has-touch" in the case of touch devices
 	 *   
@@ -1223,9 +1223,9 @@ brite.ua = {};
 	}
 	
 	/**
-	 * Return a css friendly version of the "no" of the has. "has-no-canvas" for example.
+	 * Return a css friendly version of the "no" of the has. "has-no-canvas" for snow.
 	 * 
-	 * @example
+	 * @snow
 	 *   brite.ua.
 	 */
 	brite.ua.cssHasNo = function(){
@@ -1294,7 +1294,7 @@ brite.ua = {};
 	}
 
 	/**
-	 * Get the transition prefix for this user agent (for example "-webkit-" or "-moz-"). <br />
+	 * Get the transition prefix for this user agent (for snow "-webkit-" or "-moz-"). <br />
 	 * <br />
 	 * TODO: we might want to have a brite.ua.cssPrefix() since it will be the same prefix for other css properties as
 	 * well
@@ -1349,7 +1349,7 @@ brite.ua = {};
 	 * 
 	 * @description Factory or Constructor return a "gtx" instance for this canvas which is a chainable canvas wrapper.
 	 * 
-	 * @example // Using gtx as a factory var gtx = brite.gtx($("#myCanvas")); // then, you can chain any HTML5 canvas
+	 * @snow // Using gtx as a factory var gtx = brite.gtx($("#myCanvas")); // then, you can chain any HTML5 canvas
 	 *          calls gtx.beginPath().strokeStyle("#aaa").lineWidth(1).moveTo(0,0); gtx.lineTo(100,100).stroke();
 	 *  // You can also create a brite.gtx instance with "new" var gtx2 = new brite.gtx($("#myCanvas2"));
 	 * 
