@@ -11,14 +11,20 @@ import com.restfb.Parameter;
 import com.restfb.json.JsonObject;
 import com.restfb.types.User;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class WebHandler {
 
-    //public static final String ACCESS_TOKEN = "AAACEdEose0cBAOFIuGIxOCLcj1jKZBkxHaiOjaYd71xJh1KZA5uotxFRUHl876gaiMqTVPfvJA9pK9ycQNrM4xiP7XJZCGkw1FjfoU2UAegP8861ZBWU";
 
+    /**
+     * connect demo
+     *
+     * @param token
+     * @param limit
+     * @param offset
+     * @param rc
+     */
     @WebModelHandler(startsWith = "/friends")
     public void getFriends(@WebParam("token") String token, @WebParam("limit") Integer limit,
                            @WebParam("offset") Integer offset, RequestContext rc) {
@@ -37,8 +43,17 @@ public class WebHandler {
         }
         rc.getWebModel().put("_jsonData", users);
     }
+
+    /**
+     * search demo
+     *
+     * @param token
+     * @param q
+     * @param type
+     * @param rc
+     */
     @WebModelHandler(startsWith = "/search")
-    public void search(@WebParam("token") String token,@WebParam("q") String q,
+    public void search(@WebParam("token") String token, @WebParam("q") String q,
                        @WebParam("type") String type, RequestContext rc) {
         FacebookClient facebookClient = new DefaultFacebookClient(token);
         //fetch friend from facebook, limit is 10
