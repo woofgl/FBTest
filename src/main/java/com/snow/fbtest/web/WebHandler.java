@@ -8,6 +8,7 @@ import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.Parameter;
+import com.restfb.json.JsonObject;
 import com.restfb.types.User;
 
 
@@ -19,17 +20,35 @@ public class WebHandler {
     //public static final String ACCESS_TOKEN = "AAACEdEose0cBAOFIuGIxOCLcj1jKZBkxHaiOjaYd71xJh1KZA5uotxFRUHl876gaiMqTVPfvJA9pK9ycQNrM4xiP7XJZCGkw1FjfoU2UAegP8861ZBWU";
 
     @WebModelHandler(startsWith = "/friends")
-     public void getFriends( @WebParam("token") String token, RequestContext rc) {
+    public void getFriends(@WebParam("token") String token, @WebParam("limit") Integer limit,
+                           @WebParam("offset") Integer offset, RequestContext rc) {
+        if (limit == null || limit <= 0) {
+            limit = 10;
+        }
+        if (offset == null || offset < 0) offset = 0;
         FacebookClient facebookClient = new DefaultFacebookClient(token);
         //fetch friend from facebook, limit is 10
-        Connection<User> myFriends = facebookClient.fetchConnection("me/friends", User.class, Parameter.with("limit",10));
+        Connection<User> myFriends = facebookClient.fetchConnection("me/friends", User.class,
+                Parameter.with("limit", limit), Parameter.with("offset", offset));
         List<User> users = new ArrayList<User>();
-        for (List<User> myFriend : myFriends) {
-            for (User user : myFriend) {
-                users.add(user);
 
-            }
+        for (User myFriend : myFriends.getData()) {
+            users.add(myFriend);
         }
         rc.getWebModel().put("_jsonData", users);
-     }
+    }
+    @WebModelHandler(startsWith = "/search")
+    public void search(@WebParam("token") String token,@WebParam("q") String q,
+                       @WebParam("type") String type, RequestContext rc) {
+        FacebookClient facebookClient = new DefaultFacebookClient(token);
+        //fetch friend from facebook, limit is 10
+        Connection<JsonObject> searchs = facebookClient.fetchConnection("search", JsonObject.class,
+                Parameter.with("q", q), Parameter.with("type", type));
+        List<String> results = new ArrayList<String>();
+
+        for (JsonObject jsonObj : searchs.getData()) {
+            results.add(jsonObj.toString());
+        }
+        rc.getWebModel().put("_jsonData", results);
+    }
 }
